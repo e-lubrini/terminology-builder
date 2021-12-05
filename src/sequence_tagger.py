@@ -1,5 +1,6 @@
 import sklearn_crfsuite
 
+
 class CRFSequenceClassifier:
     def __init__(self):
         pass

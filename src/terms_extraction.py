@@ -1,6 +1,7 @@
 import spacy
 from spacy.matcher import Matcher
 
+
 class RuleBasedExtractor:
     def __init__(self, verbose=True):
         self.nlp = spacy.load("en_core_web_sm")
@@ -20,17 +21,17 @@ class RuleBasedExtractor:
                 all_terms.append(lemma)
 
             if self.verbose:
-                if num+1 % 10 == 0:
-                    #print(f'{num + 1}/{len(texts)} texts processed', end="\r")
+                if num + 1 % 10 == 0:
+                    # print(f'{num + 1}/{len(texts)} texts processed', end="\r")
                     print(f'{num + 1}/{len(texts)} texts processed')
         return all_terms
 
     def _add_rules(self):
         noun_pattern = {"POS": {"IN": ["NOUN", "PROPN"]}}
         det_pattern = {"POS": {"IN": ["DET", "PRON"]}, "OP": "?"}
-        pattern = [  #[{"POS": "NOUN"}, {"POS": "NOUN"}],
+        pattern = [  # [{"POS": "NOUN"}, {"POS": "NOUN"}],
             [noun_pattern, noun_pattern],
-            #[{"DEP": "compound"}, {"POS": "NOUN"}],
+            # [{"DEP": "compound"}, {"POS": "NOUN"}],
             [noun_pattern, {"POS": "ADP"}, noun_pattern],
             [{"POS": "ADJ", "OP": "+"}, noun_pattern],
             [noun_pattern, {"POS": "ADP"}, det_pattern, noun_pattern],

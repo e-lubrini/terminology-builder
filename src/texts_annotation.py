@@ -1,4 +1,4 @@
-import os, spacy
+import spacy
 
 
 class Node():
@@ -41,27 +41,6 @@ class TerminologyTree():
     def __init__(self, name="", root=Node()):
         self.name = name
         self.root = root
-
-
-def add_term_to_tree(term, tree):
-
-    current_node = tree.root
-    for word in term:
-        if word not in current_node.points_to.keys():
-            new_node = Node(word)
-            current_node.points_to[word] = new_node
-        else:
-            new_node = current_node.points_to[word]
-
-        current_node = new_node
-
-    current_node.stored_value = term
-
-
-def fill_terminology_tree(term_list, tree):
-    for term in term_list:
-        add_term_to_tree(term, tree)
-    return
 
 
 class Annotator:
@@ -108,7 +87,7 @@ class Annotator:
                 position += 1
             else:
                 put_tag(position, "B")
-                for i in range(length-1):
+                for i in range(length - 1):
                     put_tag(position + i + 1, "I")
                 position += length
 
@@ -118,3 +97,23 @@ class Annotator:
         ]
 
         return text_tags
+
+
+def add_term_to_tree(term, tree):
+    current_node = tree.root
+    for word in term:
+        if word not in current_node.points_to.keys():
+            new_node = Node(word)
+            current_node.points_to[word] = new_node
+        else:
+            new_node = current_node.points_to[word]
+
+        current_node = new_node
+
+    current_node.stored_value = term
+
+
+def fill_terminology_tree(term_list, tree):
+    for term in term_list:
+        add_term_to_tree(term, tree)
+    return

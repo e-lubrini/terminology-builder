@@ -1,8 +1,10 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class ArticlesExtraction:
     "Class for articles extraction from https://as-botanicalstudies.springeropen.com website"
+
     def __init__(self, number=20, verbose=True, save_txt=True, save_pdf=True):
         self.number = number
         if self.number >= 50:
