@@ -1,3 +1,5 @@
+import os
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -49,7 +51,7 @@ class ArticlesExtraction:
             if not os.path.exists('articles'):
                 os.mkdir('articles')
             for key, value in texts.items():
-                with open(f"articles/{key.replace('/', '|')}.txt", 'w') as file:
+                with open(f"articles/{key.replace('/', '|')}.txt", 'w', encoding='utf-8') as file:
                     file.write(value)
         if self.save_pdf:
             if self.verbose:
