@@ -6,7 +6,7 @@ results to be expected. we collected a corpus of at 25 articles on topics belong
 domain and extracted automatically the terms from such corpus first by implementing a rule-
 based system and then by training a model using some golden annotation.
 The rule-based system used POS tags in order to detect common term patterns in the article,
-while the model us
+while the supervised learning models use a CRF and a GRU to annotate 10 articles after being trained on 20 documents with golden annotation.
 
 
 Domain: botanics
@@ -15,7 +15,7 @@ Article list: [as-botanicalstudies.springeropen.com](https://as-botanicalstudies
 
 Assignment: [♦slides](https://arche.univ-lorraine.fr/pluginfile.php/2203811/mod_resource/content/3/project2021.pdf)
 
-# Pipeline
+## Pipeline
 
 The pipeline starts with the collection of n articles (suggested \(n > 20\)) by passing the number of articles to the class \code{ArticlesExtraction} and calling its \code{extract} method. This returns a dictionary of articles of length \(n\) where each key and value are the title and text of an extracted article, respectively.
 
